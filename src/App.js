@@ -76,9 +76,9 @@ const sortedBasedOnDate = (data) => {
 
 
 // SEARCH THROUGH TEMPLATES WITH INPUTS 
-const sortBaseOnSearch = sortedBasedOnDate(sortBaseOnCategory(data)).filter(d => {
+const sortBaseOnSearch = sortedBasedOnDate(sortedBasedOnOrder((sortBaseOnCategory(data)).filter(d => {
   return d.name.toLowerCase().includes(searchInput.toLowerCase());
-})
+})))
 
 
 
