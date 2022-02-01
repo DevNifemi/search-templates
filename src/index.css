@@ -1,13 +1,119 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+*{
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* DEFAULT COLORS FOR GENERAL USAGE  */
+:root{
+  --header_input_light_black: #BDBDBD;
 }
+
+
+/* CONTAINER CLASS FOR BIGGER SCREENS TO FIT IN CENTER  */
+@media (min-width: 1400px) {
+  .container {
+      width: 1350px;
+      margin-right: auto;
+      margin-left: auto;
+  }
+}
+
+
+.info{
+  margin: 50px auto;
+  margin-bottom: 30px;
+  display: block;
+  background: #FFF4EA;
+  border-radius: 2px;
+  width: 90%;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #252525;
+  text-align: center;
+  padding-left: 10px;
+}
+.bx-info-circle{
+  color: #FC830A;
+  font-size: 22px;
+  margin-right: 10px;
+}
+.template_section{
+  display: flex !important;
+  width: 90%;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1px;
+}
+.template_section h4{
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+  color: #3F3E3E;
+}
+.template_section p{
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: right;
+  color: #989898;
+}
+.search_error{
+  color: #FC830A;
+  font-size: 17px;
+  margin-top: 20px;
+}
+
+
+/* HELPER CLASSES/METHODS FOR GENERAL USAGE */
+.d-flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.d-center{
+  margin: 0 auto;
+  display: block;
+}
+.t-center{
+  text-align: center;
+}
+
+
+
+/* -------MEDIA QUERY------- */
+@media screen and (max-width: 601px){
+  .d-center{
+    width: 100vw !important;
+    padding: 20px;
+  }
+  .info{
+    margin: 40px auto;
+    border-radius: 2px;
+    width: 92%;
+    padding: 0px 10px 0px 10px;
+
+  }
+  .header{
+      flex-direction: column;
+      width: 100% !important;
+      margin-top: 25px;
+      padding: 0;
+  }
+  .template_section h4{
+    font-weight: normal;
+    font-size: 16px;
+  }
+
+  .template-card-desc h3{
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 28px;
+  }
+}  
