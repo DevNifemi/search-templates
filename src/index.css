@@ -84,7 +84,12 @@ body {
 .t-center{
   text-align: center;
 }
-
+.pagination_class_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
 
 
 /* -------MEDIA QUERY------- */

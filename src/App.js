@@ -1,69 +1,68 @@
+import axios from 'axios';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Header from './components/header/Header';
+import Pagination from './components/pagination/Pagination';
 import TemplateCard from './components/template-card/TemplateCard';
 
+  // page size for Pagination
+let PageSize = 24
+
+
 const App = () => {
-  const data = [
-  {
-    name: "Badmusi Membership Form Template",
-    created: "2021-11-04T16:26:44.666569",
-    category: "Health",
-    description: "Testing template",
-    link: "",
-    },
-  {
-    name: "Alumni Membership Form Template",
-    created: "2000-12-04T16:26:44.666569",
-    category: 'Education',
-    description: "Sample scholarship template",
-    link: "https://formpl.us",
-    },
-    {
-      name: "Zlumni Membership Form Template",
-      created: "2010-12-04T16:26:44.666569",
-      category: 'E-commerce',
-      description: "Sample scholarship template",
-      link: "https://formpl.us",
-     },
-     {
-      name: "Imranni Membership Form Template",
-      created: "2020-02-04T16:20:44.222378",
-      category: 'Education',
-      description: "Sample scholarship template",
-      link: "https://formpl.us",
-     }
-  ]
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const  { searchInput, categoryFilter, orderFilter, dateFilter }  = useSelector((state) => state.search)
 
 
+  const getTemplatesData = async () => {
+    let response = await axios.get('https://front-end-task-dot-result-analytics-dot-fpls-dev.uc.r.appspot.com/api/v1/public/task_templates');
+
+    setData(response.data)
+    setLoading(false)
+  }
+
+  useEffect(() => {
+
+    getTemplatesData()
+
+  }, []);
+  
+
+
+
 // SORT DATA BASED ON CATEGORY
-const sortBaseOnCategory = (data) => {
-    return data.filter((d) => {
-        if (d.category.toLowerCase() === categoryFilter.toLowerCase()) {
-          return d.category
-        }
-        else if (categoryFilter === "All") {
-            return d
-        }
-       return null
-    });
-}
+const sortBaseOnCategory = useCallback((data) => {
+  return data.filter((d) => {
+    if (d.category[0].toLowerCase() === categoryFilter.toLowerCase()) {
+      return d.category
+    }
+    else if (categoryFilter === "All") {
+        return d
+    }
+   return null
+});
+}, [categoryFilter])
+
 
 // SORT DATA BASED ON ORDEER OF ASCENDING / DESCENDING 
-const sortedBasedOnOrder = (data) => {
+const sortedBasedOnOrder = useCallback((data) => {
   if (orderFilter === 'Ascending') {
-    return data.sort((a,b) => (a.name > b.name) ? 1 : -1)
+    return data.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1)
   }
   else if (orderFilter === 'Descending') {
-    return data.sort((a,b) => (a.name > b.name) ? -1 : 1)
+    return data.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? -1 : 1)
   }
 
   return data
-}
+}, [orderFilter]);
+
+
 
 // SORT DATA BASED ON DATE OF ASCENDING / DESCENDING 
-const sortedBasedOnDate = (data) => {
+const sortedBasedOnDate = useCallback((data) => {
   if (dateFilter === 'Ascending') {
     return data.sort((a,b) => (Date.parse(b.created) - Date.parse(a.created)))
   }
@@ -72,15 +71,22 @@ const sortedBasedOnDate = (data) => {
   }
 
   return data
-}
+}, [ dateFilter]);
 
 
+  
 // SEARCH THROUGH TEMPLATES WITH INPUTS 
 const sortBaseOnSearch = sortedBasedOnDate(sortedBasedOnOrder((sortBaseOnCategory(data)).filter(d => {
   return d.name.toLowerCase().includes(searchInput.toLowerCase());
 })))
 
 
+// render data based on pagination 
+const currentTableData = useMemo(() => {
+  const firstPageIndex = (currentPage - 1) * PageSize;
+  const lastPageIndex = firstPageIndex + PageSize;
+  return sortBaseOnSearch.slice(firstPageIndex, lastPageIndex);
+}, [currentPage, sortBaseOnSearch]);
 
   return (
     <div className="container">
@@ -94,13 +100,27 @@ const sortBaseOnSearch = sortedBasedOnDate(sortedBasedOnOrder((sortBaseOnCategor
       
         <div className='template_section d-center'>
           <h4>{categoryFilter} Templates</h4>
-          <p>{sortBaseOnSearch.length} template(s)</p>
+          <p>{currentTableData.length} template(s)</p>
         </div>
 
-       { sortBaseOnSearch.length >= 1 ?
-       <TemplateCard data={sortBaseOnSearch} /> :
+      {loading ? <p className='search_error t-center'>Loading..</p> : (
+      <>
+      { data.length >= 1 ?
+        <TemplateCard data={currentTableData} /> :
         <p className='search_error t-center'>Sorry! There is no template that matches your search</p>
-      }
+      } 
+      </>)}
+
+      <div className='pagination_class_container'>
+        <Pagination
+          className="pagination-bar"
+          currentPage={currentPage}
+          totalCount={data.length}
+          pageSize={PageSize}
+          onPageChange={page => setCurrentPage(page)}
+        />
+      </div>
+
     </div>
   );
 }
