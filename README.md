@@ -19,7 +19,7 @@ You may also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
-wrote test using Ract Testing Library.
+wrote test using React Testing Library.
 Tests for Header component, and Search Input.
 
 ### `npm run eject`
