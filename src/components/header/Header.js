@@ -6,7 +6,7 @@ import DropDownSelect from './DropDownSelect';
 const Header = () => {
 
   return (
-        <header className='header d-center'>
+        <header data-testid='header' className='header d-center'>
             <SearchInput/>
 
             <DropDownSelect/>

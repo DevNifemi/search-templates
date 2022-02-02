@@ -1,9 +1,8 @@
 # Getting Started with Get Free Templates
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), 
-and ReduxToolkit for State Management, React hooks, Vanilla CSS (for all device responsiveness) and Axios 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app),
+and ReduxToolkit for State Management, React hooks, Vanilla CSS (for all device responsiveness) and Axios
 for fetching data.
-
 
 ## Available Scripts
 
@@ -22,8 +21,6 @@ You may also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-
-
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
@@ -35,15 +32,14 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Tests
+
 Project test was writen in REACT TESTING LIBRARY
 
 ### Optimize Code Performance
+
 To optimize performance, I employed the use of React.memo in components that re-renders without prop changes.
 useCallBack and useMemo was used to memoize functions that needs to render only when a parameter or dependent variable changes.
-
-
 
 ### Deployment
 
 The website is Deployed live on [https://search-templates.vercel.app/]
-

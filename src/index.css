@@ -40,6 +40,8 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1px;
+  padding-left: 7px;
+  padding-right: 4px;
 }
 .template_section h4{
   font-weight: normal;
