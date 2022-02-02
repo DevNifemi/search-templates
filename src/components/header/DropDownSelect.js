@@ -15,12 +15,15 @@ const DropDownSelect = () => {
     // order filter state 
     const handleOrderFilter = (e) => {
         dispatch(setOrderFilter(e.target.value))
+        dispatch(setDateFilter('Default'))
     }
 
     // date filter state 
     const handleDateFilter = (e) => {
         dispatch(setDateFilter(e.target.value))
+        dispatch(setOrderFilter('Default'))
     }
+
   return (
       <div className='sort_section'>
           

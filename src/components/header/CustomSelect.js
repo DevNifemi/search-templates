@@ -16,4 +16,4 @@ const CustomSelect = ({label, children, handleChange}) => {
   
 };
 
-export default CustomSelect;
+export default React.memo(CustomSelect);

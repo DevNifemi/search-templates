@@ -15,16 +15,6 @@ body {
 }
 
 
-/* CONTAINER CLASS FOR BIGGER SCREENS TO FIT IN CENTER  */
-@media (min-width: 1400px) {
-  .container {
-      width: 1350px;
-      margin-right: auto;
-      margin-left: auto;
-  }
-}
-
-
 .info{
   margin: 50px auto;
   margin-bottom: 30px;
@@ -69,6 +59,16 @@ body {
   font-size: 17px;
   margin-top: 20px;
 }
+.pagination_class_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+.loading{
+  margin-top: 30px;
+  font-size: 18px;
+}
 
 
 /* HELPER CLASSES/METHODS FOR GENERAL USAGE */
@@ -83,12 +83,6 @@ body {
 }
 .t-center{
   text-align: center;
-}
-.pagination_class_container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
 }
 
 
@@ -121,4 +115,18 @@ body {
     font-size: 21px;
     line-height: 28px;
   }
+  .pagination_class_container{
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+  }
 }  
+
+/* CONTAINER CLASS FOR BIGGER SCREENS TO FIT IN CENTER  */
+@media (min-width: 1400px) {
+  .container {
+      width: 1350px;
+      margin-right: auto;
+      margin-left: auto;
+  }
+}

@@ -7,7 +7,7 @@ const TemplateCard = ({ data }) => {
         <div className='template-grid d-center'>
             {
                 data.map((d, idx) => (
-                    <div key={idx} className='template-card'>
+                    <div data-testid={`template-card-${idx}`} key={idx} className='template-card'>
 
                         <div className='template-card-desc'>
                             <h3>{d.name}</h3>

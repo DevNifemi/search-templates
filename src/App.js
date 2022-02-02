@@ -1,36 +1,40 @@
 import axios from 'axios';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { BASEURL } from './assets/constants';
 import Header from './components/header/Header';
 import Pagination from './components/pagination/Pagination';
 import TemplateCard from './components/template-card/TemplateCard';
 
-  // page size for Pagination
+
+
+// page size for Pagination
 let PageSize = 24
+
+
 
 
 const App = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-
+  // get props of state from store 
   const  { searchInput, categoryFilter, orderFilter, dateFilter }  = useSelector((state) => state.search)
 
 
+  // FETCH TEMPLATE DATA FOR USE 
   const getTemplatesData = async () => {
-    let response = await axios.get('https://front-end-task-dot-result-analytics-dot-fpls-dev.uc.r.appspot.com/api/v1/public/task_templates');
+    let response = await axios.get(BASEURL);
 
     setData(response.data)
+    console.log(response.data)
     setLoading(false)
   }
 
   useEffect(() => {
-
+    // CALL TEMPLATE DATA ON PAGE LOAD 
     getTemplatesData()
-
   }, []);
-  
-
 
 
 // SORT DATA BASED ON CATEGORY
@@ -88,6 +92,7 @@ const currentTableData = useMemo(() => {
   return sortBaseOnSearch.slice(firstPageIndex, lastPageIndex);
 }, [currentPage, sortBaseOnSearch]);
 
+
   return (
     <div className="container">
 
@@ -103,13 +108,14 @@ const currentTableData = useMemo(() => {
           <p>{currentTableData.length} template(s)</p>
         </div>
 
-      {loading ? <p className='search_error t-center'>Loading..</p> : (
+      { loading ? <p className='search_error t-center loading'>Loading Templates ...</p> : (
       <>
-      { data.length >= 1 ?
-        <TemplateCard data={currentTableData} /> :
-        <p className='search_error t-center'>Sorry! There is no template that matches your search</p>
-      } 
-      </>)}
+        { currentTableData.length >= 1 ?
+          <TemplateCard data={currentTableData} /> :
+          <p className='search_error t-center'>Sorry! There is no template that matches your search</p>
+        } 
+      </> )
+      }
 
       <div className='pagination_class_container'>
         <Pagination

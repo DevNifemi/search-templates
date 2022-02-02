@@ -39,3 +39,16 @@
 .prev, .next{
     cursor: pointer;
 }
+
+
+@media screen and (max-width: 601px){
+    .pagination-item{
+        display: none !important;
+    }
+    .pagination-container{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+  } 

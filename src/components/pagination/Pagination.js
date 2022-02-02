@@ -3,6 +3,7 @@ import './pagination.styles.css';
 import { usePagination, DOTS } from '../../hooks/usePagination';
 
 const Pagination = props => {
+
   const {
     onPageChange,
     totalCount,
@@ -41,15 +42,15 @@ const Pagination = props => {
       </li>
         
         <div className='page-number'>
-        {paginationRange.map(pageNumber => { 
+        {paginationRange.map((pageNumber, idx) => { 
             // If the pageItem is a DOT, render the DOTS unicode character
             if (pageNumber === DOTS) {
-            return <li key={pageNumber} className="pagination-item dots">&#8230;</li>;
+            return <li key={idx} className="pagination-item dots">&#8230;</li>;
             }
 
             // Render our Page Pills
             return (
-            <li key={pageNumber} className={`pagination-item ${currentPage === pageNumber ? 'selected' : ''}`} onClick={() => onPageChange(pageNumber)}>
+            <li key={idx} className={`pagination-item ${currentPage === pageNumber ? 'selected' : ''}`} onClick={() => onPageChange(pageNumber)}>
                 {pageNumber}
             </li>
             );

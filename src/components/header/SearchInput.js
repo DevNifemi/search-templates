@@ -14,12 +14,11 @@ const SearchInput = () => {
         <div className='searchbox d-flex'>
           <input
             className='search_input'
-            type='search'
             placeholder='Search Templates'
             onChange={e => setState(e.target.value)}
           />
 
-          <i onClick={searchTemplate} className='bx bx-search'/>
+          <i  onClick={searchTemplate} className='bx bx-search'/>
         </div>
       );
 };
