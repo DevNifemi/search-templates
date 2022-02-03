@@ -12,8 +12,6 @@ import TemplateCard from './components/template-card/TemplateCard';
 let PageSize = 24
 
 
-
-
 const App = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,9 +23,9 @@ const App = () => {
   // FETCH TEMPLATE DATA FOR USE 
   const getTemplatesData = async () => {
     let response = await axios.get(BASEURL);
-
+    // set template to data state 
     setData(response.data)
-    console.log(response.data)
+    // disable loader 
     setLoading(false)
   }
 
