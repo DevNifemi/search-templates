@@ -1,13 +1,12 @@
 import React from 'react';
 
-const CustomSelect = ({label, children, handleChange}) => {
+const CustomSelect = ({label, children, handleChange, value}) => {
 
   return (
     <div className='custom_select'>
 
         <p>{label}</p>
-        <select onChange={(e) => handleChange(e)}>
-            {/* RENDER OPTION TAGS  */}
+        <select value={value} onChange={(e) => handleChange(e)}>
             {children}
         </select>
 
