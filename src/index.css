@@ -4,6 +4,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+    font-family: 'CircularStd';
 }
 *{
   box-sizing: border-box;
@@ -13,7 +14,12 @@ body {
 :root{
   --header_input_light_black: #BDBDBD;
 }
-
+/* global font 
+ */
+ @font-face {
+  font-family: 'CircularStd';
+  src: local('CircularStd'), url(./assets/fonts/Circular\ Std\ Font.otf) format('truetype');
+}
 
 .info{
   margin: 50px auto;
