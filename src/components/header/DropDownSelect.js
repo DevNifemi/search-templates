@@ -33,13 +33,14 @@ const DropDownSelect = () => {
         setOrderValue('Default')
     }
 
+    
   return (
       <div className='sort_section'>
           
           <p className='sort'>Sort By:</p>
 
             <CustomSelect value={value} handleChange={(e) => handleCategorySelect(e)} label='Category'>
-                <option value={value}>All</option>
+                <option>All</option>
                 <option>Education</option>
                 <option>E-commerce</option>
                 <option>Health</option>
